@@ -46,6 +46,17 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def session_is_reviewing
+    if (review_id = session[:last_review_id])
+      @next_review = Review.find review_id
+      @next_review.lock!
+      session[:last_review_id] = @next_review.id
+      render :redirecting
+    else
+      next_pending_for_bookmarklet
+    end
+  end
+
   private
 
     def handle_action(mode)
