@@ -1,0 +1,30 @@
+- if @review_count == 0
+  .message
+    h1
+      | Good news! There are no pending reviews at this time!
+
+.focus
+  h2
+    | Reviews
+
+  p
+    | This page will help you review pending pages. There are two ways to review.
+
+  .partition
+    h3
+      | Via image previews
+    p
+      = link_to "Start editing", next_pending_for_edit_reviews_path
+    p.byline
+      | This page will help you review pending pages. There are two ways to review.
+
+  .partition
+    h3
+      | Via bookmarklet
+    p
+      | You can use bookmarklet for instances where you need to browse around.
+
+    p
+      | Drag these to your bookmarks bar to begin using them.
+
+    =render partial: "bookmarklets"

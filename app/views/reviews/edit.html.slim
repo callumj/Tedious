@@ -1,0 +1,15 @@
+= form_for @review, html: { class: "maxi-form" } do |form|
+
+  h2
+    | Reviewing for
+    = " #{@review.name}"
+
+  .focus
+    img src="http://api.snapito.com/?size=lc&notrack=true&url=#{@review.url}"
+
+  div.form-buttons.large
+    = button_tag name: "operation", value: "approve" do
+      | Approve
+
+    = button_tag name: "operation", value: "reject" do
+      | Reject

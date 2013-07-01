@@ -1,0 +1,11 @@
+.focus_message
+  h2
+    | You will now by reviewing for
+  h1
+    = link_to @next_review.name, @next_review.url
+
+  p.byline
+    | You will be redirected to it in 5 seconds.
+
+
+  meta http-equiv="refresh" content="5; url=#{@next_review.url}"

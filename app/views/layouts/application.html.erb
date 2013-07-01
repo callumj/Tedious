@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tedious</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<script type="text/javascript">
+
+var handleInPageBookmarkletClick = function(event) {
+  alert("Drag me to the bookmarks bar");
+  event.preventDefault();
+}
+
+$(function() {
+  $(".bookmarklet a").on ("click", handleInPageBookmarkletClick);
+});
+
+</script>
+<body>
+
+<div id="content">
+  <%= yield %>
+</div>
+
+</body>
+</html>

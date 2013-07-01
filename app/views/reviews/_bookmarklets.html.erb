@@ -1,0 +1,14 @@
+<p class="bookmarklet">
+  <a href="javascript:window.location.href='<%= next_pending_for_bookmarklet_reviews_url %>'">Start reviewing</a>
+</p>
+<p class="byline">Click this to begin reviewing a page. You can bail out at any time</p>
+
+<p class="bookmarklet">
+  <a href="javascript:window.location.href='<%= handle_approve_action_reviews_url %>?url=' + window.location.href">Approve</a>
+</p>
+<p class="byline">Click this approve a page. You will be redirected to a new one after approval.</p>
+
+<p class="bookmarklet">
+  <a href="javascript:window.location.href='<%= handle_reject_action_reviews_url %>?url=' + window.location.href">Reject</a>
+</p>
+<p class="byline">Click this reject a page. You will be redirected to a new one after rejection.</p>
