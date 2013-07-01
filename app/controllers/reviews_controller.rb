@@ -38,6 +38,7 @@ class ReviewsController < ApplicationController
   def next_pending_for_bookmarklet
     @next_review = Review.pending_scope.first
     if @next_review
+      @next_review.lock!
       session[:last_review_id] = @next_review.id
       render :redirecting
     else
