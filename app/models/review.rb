@@ -14,6 +14,10 @@ class Review < ActiveRecord::Base
     where(arel_table[:locked_until].eq(nil).or(arel_table[:locked_until].lt(Time.now.utc)))
   end
 
+  def self.accepted
+    where(arel_table[:accepts].gt(0))
+  end
+
   def lock!
     set_lock! Time.now + LOCK_TIME_FRAME
   end
