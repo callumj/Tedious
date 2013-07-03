@@ -36,7 +36,8 @@ class ReviewsController < ApplicationController
   end
 
   def next_pending_for_bookmarklet
-    @next_review = Review.pending_scope.first
+    @next_review = session[:last_review_id].presence && Review.find(session[:last_review_id])
+    @next_review = Review.pending_scope.first if @next_review.nil? || @next_review.processed?
     if @next_review
       @next_review.lock!
       session[:last_review_id] = @next_review.id
@@ -47,14 +48,7 @@ class ReviewsController < ApplicationController
   end
 
   def session_is_reviewing
-    if (review_id = session[:last_review_id])
-      @next_review = Review.find review_id
-      @next_review.lock!
-      session[:last_review_id] = @next_review.id
-      render :redirecting
-    else
-      next_pending_for_bookmarklet
-    end
+    next_pending_for_bookmarklet
   end
 
   private
@@ -63,6 +57,7 @@ class ReviewsController < ApplicationController
       if (review_id = session[:last_review_id])
         @review = Review.find review_id
         if (handle_operation(mode))
+          session[:last_review_id] = nil
           next_pending_for_bookmarklet
         else
           render :edit
