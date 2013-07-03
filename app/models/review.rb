@@ -15,7 +15,11 @@ class Review < ActiveRecord::Base
   end
 
   def self.accepted
-    where(arel_table[:accepts].gt(0))
+    where(arel_table[:accepts].gt(0)).where(arel_table[:rejects].eq(0))
+  end
+
+  def self.rejected
+    where(arel_table[:rejects].gt(0)).where(arel_table[:accepts].eq(0))
   end
 
   def lock!
