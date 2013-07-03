@@ -1,7 +1,13 @@
-- if @review_count == 0
+- if current_pending_count == 0
   .message
     h1
       | Good news! There are no pending reviews at this time!
+- else
+  .message
+    h2
+      | There are currently
+      =" #{current_pending_count}"
+      |  review(s) pending.
 
 .focus
   h2

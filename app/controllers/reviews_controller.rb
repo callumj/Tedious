@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
 
+  def current_pending_count
+    @review_count ||= Review.pending_scope.count
+  end
+  helper_method :current_pending_count
+
   def index
-    @review_count = Review.pending_scope.count
   end
 
   def handle_approve_action

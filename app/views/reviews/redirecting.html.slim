@@ -1,11 +1,15 @@
-.focus_message
-  h2
-    | You will now be reviewing for
-  h1
-    = link_to @next_review.name, @next_review.url
+.focus.message
+  .core
+    h2
+      | You will now be reviewing for
+    h1
+      = link_to @next_review.name, @next_review.url
 
-  p.byline
-    | You will be redirected to it in 5 seconds.
-
+  .partition
+    p.byline
+      | You will be redirected to it in 5 seconds.
+    p.byline.small
+      = current_pending_count
+      |  reviews remaining
 
   meta http-equiv="refresh" content="5; url=#{@next_review.url}"
