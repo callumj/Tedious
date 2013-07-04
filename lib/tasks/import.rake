@@ -15,7 +15,7 @@ namespace :import do
       insert_row << (url || row.last)
       buffer << insert_row
 
-      if buffer.count == 1000
+      if buffer.count == 100
         puts generate_sql(base_statement, buffer)
         buffer.clear
       end
@@ -32,7 +32,7 @@ namespace :import do
     end
 
     joined_value_sql = value_sql.join(",\r\n")
-    "#{base_statement} #{joined_value_sql}"
+    "#{base_statement} #{joined_value_sql};"
   end
 
 end
