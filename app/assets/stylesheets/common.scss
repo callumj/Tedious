@@ -4,6 +4,16 @@ body {
 
 #content {
 
+  &.in_frame {
+    .focus.message {
+      width: 100% !important;
+
+      h1, h2 {
+        font-size: medium;
+      }
+    }
+  }
+
   .focus {
     margin-top: 4px;
 
