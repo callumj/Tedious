@@ -45,7 +45,14 @@ class ReviewsController < ApplicationController
     if @next_review
       @next_review.lock!
       session[:last_review_id] = @next_review.id
-      render :redirecting
+      respond_to do |format|
+        format.json do
+          headers['Access-Control-Allow-Origin'] = '*' 
+          headers['Access-Control-Request-Method'] = '*'
+          render json: @next_review
+        end
+        format.html { render :redirecting }
+      end
     else
       redirect_to action: :index
     end

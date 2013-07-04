@@ -21,7 +21,7 @@ $(function() {
 </script>
 <body>
 
-<div id="content">
+<div id="content" class="<%= in_frame? ? "in_frame" : "" %>">
   <%= yield %>
 </div>
 

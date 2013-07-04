@@ -5,11 +5,16 @@
     h1
       = link_to @next_review.name, @next_review.url
 
-  .partition
-    p.byline
-      | You will be redirected to it in 5 seconds.
-    p.byline.small
-      = current_pending_count
-      |  reviews remaining
+  - if in_frame?
+    .partition
+      p
+        =link_to "Admin search", "http://web.production.connected.fm/w/admin/artists?query=#{@next_review.name}", "target" => "_blank"
+  - else in_frame?
+    .partition
+      p.byline
+        | You will be redirected to it in 5 seconds.
+      p.byline.small
+        = current_pending_count
+        |  reviews remaining
 
-  meta http-equiv="refresh" content="5; url=#{@next_review.url}"
+    meta http-equiv="refresh" content="5; url=#{@next_review.url}"
